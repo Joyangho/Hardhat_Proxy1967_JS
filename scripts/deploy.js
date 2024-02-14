@@ -1,0 +1,19 @@
+const { ethers, upgrades } = require("hardhat");
+
+async function main() {
+  const HighRunTokenV1 = await ethers.getContractFactory(
+    "HighRunTokenV1"
+  );
+  console.log("Deploying HighRunTokenV1...");
+  const contract = await upgrades.deployProxy(HighRunTokenV1, ["0x74B76eEde2291f17f1597018aB45C3272c3E106A"], {
+    initializer: "initialize",
+    kind: "transparent",
+  });
+  await contract.deployed();
+  console.log("HighRunTokenV1 deployed to:", contract.address);
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exitCode = 1;
+  });
