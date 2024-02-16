@@ -9,8 +9,8 @@ async function main() {
     initializer: "initialize",
     kind: "transparent",
   });
-  await contract.deployed();
-  console.log("HighRunTokenV1 deployed to:", contract.address);
+  await contract.waitForDeployment();
+  console.log("HighRunTokenV1 deployed to:", contract.target);
 }
 
 main().catch((error) => {
